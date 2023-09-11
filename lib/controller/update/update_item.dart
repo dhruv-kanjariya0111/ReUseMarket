@@ -66,9 +66,9 @@ class UpdateController extends GetxController {
       {required doc,
       required title,
       required details,
-      required dayPrice,
-      required weekPrice,
-      required monthPrice,
+      // required dayPrice,
+      // required weekPrice,
+      // required monthPrice,
       required category,
       required selectedfirstImage,
       required selectedsecondImage,
@@ -100,9 +100,9 @@ class UpdateController extends GetxController {
     await itemDoc.update({
       'title': title,
       'details': details,
-      'dayPrice': dayPrice,
-      'weekPrice': weekPrice,
-      'monthPrice': monthPrice,
+      // 'dayPrice': dayPrice,
+      // 'weekPrice': weekPrice,
+      // 'monthPrice': monthPrice,
       'category': category,
     }).then((value) {
       Get.back();

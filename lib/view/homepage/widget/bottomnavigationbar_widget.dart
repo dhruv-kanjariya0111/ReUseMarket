@@ -14,9 +14,10 @@ class BottomNavigationBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => BottomNavigationBar(
-          backgroundColor: Color(0xFFD9ECC7),
-          selectedItemColor: Color(0xFF07A3B2),
-          unselectedItemColor: Colors.black.withOpacity(10),
+          elevation: 10,
+          backgroundColor: kgreylight,
+          selectedItemColor: const Color.fromARGB(255, 0, 175, 158),
+          unselectedItemColor: Colors.blueGrey,
           iconSize: 30.0,
           currentIndex: homeController.selectedIndex.value,
           onTap: homeController.changeTabIndex,
@@ -26,20 +27,20 @@ class BottomNavigationBarWidget extends StatelessWidget {
                 icon: const Icon(
                   FontAwesomeIcons.house,
                   size: 25.0,
-                  color: kblackColor,
+                  // color: kblackColor,
                 ),
                 label: AppLocalizations.of(context)!.home),
             BottomNavigationBarItem(
                 icon: const Icon(
                   FontAwesomeIcons.plus,
-                  color: kblackColor,
+                  // color: kblackColor,
                   size: 25.0,
                 ),
                 label: AppLocalizations.of(context)!.addItem),
             BottomNavigationBarItem(
                 icon: const Icon(
                   FontAwesomeIcons.upload,
-                  color: kblackColor,
+                  // color: kblackColor,
                   size: 25.0,
                 ),
                 label: AppLocalizations.of(context)!.order),

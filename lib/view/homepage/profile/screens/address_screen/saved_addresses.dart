@@ -24,12 +24,12 @@ class SavedAddresses extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           kheight20,
-          const Center(
-            child: Text(
-              'Select your address',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
+          // const Center(
+          //   child: Text(
+          //     'Select your address',
+          //     style: TextStyle(fontWeight: FontWeight.bold),
+          //   ),
+          // ),
           kheight20,
           StreamBuilder(
             stream: FirebaseFirestore.instance
@@ -54,18 +54,19 @@ class SavedAddresses extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return Container(
                           margin: const EdgeInsets.only(
-                              bottom: 20.0, left: 10.0, right: 10.0),
+                              bottom: 15.0, left: 15.0, right: 15.0),
                           padding: const EdgeInsets.all(8.0),
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.grey,
-                                    blurRadius: 2.0,
-                                    spreadRadius: 2.0)
-                              ],
-                              border: Border.all(color: Colors.grey),
-                              color: kwhiteColor),
+                            // boxShadow: const [
+                            // BoxShadow(
+                            //     color: Colors.grey,
+                            //     blurRadius: 2.0,
+                            //     spreadRadius: 2.0)
+                            // ],
+                            borderRadius: BorderRadius.circular(20),
+                            color: const Color.fromARGB(83, 158, 158, 158),
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -145,11 +146,13 @@ class SavedAddresses extends StatelessWidget {
                                               index: index,
                                             ));
                                       },
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.edit,
-                                        color: kBlue900,
+                                        color: Color(0xFF07A3B2),
                                       )),
-                                  kheight10,
+                                  const SizedBox(
+                                    height: 100,
+                                  ),
                                   IconButton(
                                       onPressed: () {},
                                       icon: const Icon(
@@ -170,22 +173,32 @@ class SavedAddresses extends StatelessWidget {
               }
             },
           ),
-          Center(
-            child: TextButton.icon(
-                onPressed: () {
-                  Get.to(() => const AddAddressWidget());
-                },
-                icon: Icon(
-                  Icons.home,
-                  color: kOrange900,
-                ),
-                label: Text(
-                  "Add new address",
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, color: kOrange900),
-                )),
+          Container(
+            decoration: BoxDecoration(
+              color: kgreylight,
+              border: Border.all(
+                width: 2,
+                color: const Color(0xFF07A3B2),
+              ),
+            ),
+            child: Center(
+              child: TextButton.icon(
+                  onPressed: () {
+                    Get.to(() => const AddAddressWidget());
+                  },
+                  icon: const Icon(
+                    Icons.home,
+                    color: Color(0xFF07A3B2),
+                  ),
+                  label: const Text(
+                    "Add new address",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF07A3B2),
+                    ),
+                  )),
+            ),
           ),
-          kheight20
         ],
       ),
     );

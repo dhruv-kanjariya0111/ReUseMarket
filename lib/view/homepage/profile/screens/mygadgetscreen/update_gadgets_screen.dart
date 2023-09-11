@@ -78,33 +78,33 @@ class UpdateGadget extends StatelessWidget {
                           color: kblackColor, fontWeight: FontWeight.w500),
                     ),
                     kheight10,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        AmountContainer(
-                          hinText: dayText,
-                          controller: updateGadget.dayController,
-                          onChanged: (value) {
-                            int day = int.tryParse(value) ?? 0;
-                            updateGadget.weekController.text =
-                                (day * 7).ceil().toString();
-                            updateGadget.monthController.text =
-                                (day * 30).ceil().toString();
-                          },
-                          width: 100.0,
-                        ),
-                        AmountContainer(
-                          hinText: weekText,
-                          controller: updateGadget.weekController,
-                          width: 100.0,
-                        ),
-                        AmountContainer(
-                          hinText: monthText,
-                          controller: updateGadget.monthController,
-                          width: 100.0,
-                        )
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   children: [
+                    //     AmountContainer(
+                    //       hinText: dayText,
+                    //       controller: updateGadget.dayController,
+                    //       onChanged: (value) {
+                    //         int day = int.tryParse(value) ?? 0;
+                    //         updateGadget.weekController.text =
+                    //             (day * 7).ceil().toString();
+                    //         updateGadget.monthController.text =
+                    //             (day * 30).ceil().toString();
+                    //       },
+                    //       width: 100.0,
+                    //     ),
+                    //     AmountContainer(
+                    //       hinText: weekText,
+                    //       controller: updateGadget.weekController,
+                    //       width: 100.0,
+                    //     ),
+                    //     AmountContainer(
+                    //       hinText: monthText,
+                    //       controller: updateGadget.monthController,
+                    //       width: 100.0,
+                    //     )
+                    //   ],
+                    // ),
                     kheight20,
                     const Text(
                       upload3imageText,
@@ -130,9 +130,6 @@ class UpdateGadget extends StatelessWidget {
                                 doc: doc,
                                 title: updateGadget.itemTitleController.text,
                                 details: updateGadget.itemDetailController.text,
-                                dayPrice: updateGadget.dayController.text,
-                                weekPrice: updateGadget.weekController.text,
-                                monthPrice: updateGadget.monthController.text,
                                 category: itemModel.dropdownValue.value,
                                 selectedfirstImage: updateGadget.firstImage,
                                 selectedsecondImage: updateGadget.secondImage,
@@ -155,20 +152,18 @@ class UploadImageRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        kwidth20,
         EditImageContainer(
           image: gadget.image1,
           imageToUpload: updateGadget.firstImage,
           index: 1,
         ),
-        kwidth20,
         EditImageContainer(
           image: gadget.image2,
           imageToUpload: updateGadget.secondImage,
           index: 2,
         ),
-        kwidth20,
         EditImageContainer(
           image: gadget.image3,
           imageToUpload: updateGadget.thirdImage,

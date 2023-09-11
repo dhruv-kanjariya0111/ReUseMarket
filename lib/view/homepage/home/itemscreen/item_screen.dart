@@ -49,10 +49,6 @@ class ItemScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               kheight20,
-              Text(gadget.title,
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      color: kblackColor, fontWeight: FontWeight.bold)),
-              kheight20,
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.all(12.0),
@@ -64,14 +60,21 @@ class ItemScreen extends StatelessWidget {
                     kwidth10,
                     ImageCard(imageUrl: gadget.image2),
                     kwidth10,
-                    ImageCard(imageUrl: gadget.image3)
+                    ImageCard(imageUrl: gadget.image3),
                   ],
                 ),
               ),
               kheight10,
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  Text(gadget.title,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall!
+                          .copyWith(
+                              color: kblackColor, fontWeight: FontWeight.bold)),
+                  kheight20,
                   RichText(
                     text: TextSpan(
                       children: [
@@ -85,7 +88,7 @@ class ItemScreen extends StatelessWidget {
                                     fontWeight: FontWeight.bold)),
                         TextSpan(
                             // text: "₹${gadget.dayPrice}/day",
-                            text: "₹${10}/day",
+                            text: "₹${10}",
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineSmall!
@@ -95,7 +98,7 @@ class ItemScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  RatingWidget(ownerEmail: gadget.email, title: gadget.title)
+                  // RatingWidget(ownerEmail: gadget.email, title: gadget.title)
                 ],
               ),
               kheight10,
@@ -119,32 +122,27 @@ class ItemScreen extends StatelessWidget {
               kDivider(context),
               kheight10,
               SizedBox(
-                                  width: 130.0,
-                                  child: ElevatedButton(
-                                    onPressed: () async {
-                                      
-                                        Navigator.of(context)
-                                            .push(MaterialPageRoute(
-                                          builder: (context) => MessageScreen(
-                                            recieverEmail:
-                                                gadget.email,
-                                            recieverName: "Dhruv",
-                                            senderName: 'Faseen',
-                                          ),
-                                        ));
-                                      
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: kBlue900,
-                                        side: BorderSide.none,
-                                        shape: const StadiumBorder()),
-                                    child: Text(
-                                      "Message",
-                                      maxLines: 1,
-                                    ),
-                                  ),
-                                ),
-                              
+                width: 130.0,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => MessageScreen(
+                        recieverEmail: gadget.email,
+                        recieverName: "",
+                        senderName: '',
+                      ),
+                    ));
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: kBlue900,
+                      side: BorderSide.none,
+                      shape: const StadiumBorder()),
+                  child: Text(
+                    "Message",
+                    maxLines: 1,
+                  ),
+                ),
+              ),
               kheight10,
               isOwner
                   ? BookingButton(

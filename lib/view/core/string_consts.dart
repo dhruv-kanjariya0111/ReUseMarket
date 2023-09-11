@@ -2,7 +2,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 const logintext = "LOGIN";
 const logoutText = "Logout";
-const welcomeBack = "TO OLX";
+const welcomeBack = "TO ReUseMarket";
 const welcomText = "Welcome";
 const rupee = '₹';
 const forgotpassText = "Forgot password ?";

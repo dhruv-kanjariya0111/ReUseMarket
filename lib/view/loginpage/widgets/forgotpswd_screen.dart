@@ -23,8 +23,8 @@ class ForgotPasswordScreen extends StatelessWidget {
         child: AppBarWidget(title: forgotpassText),
       ),
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        decoration: boxDecoration,
+        // height: MediaQuery.of(context).size.height,
+        // decoration: boxDecoration,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
@@ -33,15 +33,24 @@ class ForgotPasswordScreen extends StatelessWidget {
                 children: [
                   const Text(
                     mailtoResetPassText,
-                    style: TextStyle(color: kwhiteColor, fontSize: 20.0),
+                    style: TextStyle(color: Colors.blueGrey, fontSize: 20.0),
                     textAlign: TextAlign.center,
                   ),
                   kheight20,
-                  TextFieldWidget(
-                    hintText: mailText,
-                    controller: loginController.emailController.value,
-                    isEmail: true,
-                    keyboardType: TextInputType.emailAddress,
+                  Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(109, 158, 158, 158),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: TextFieldWidget(
+                      hintText: '',
+                      label: mailText,
+                      
+                      controller: loginController.emailController.value,
+                      isEmail: true,
+                      keyboardType: TextInputType.emailAddress,
+                    ),
                   ),
                   kheight20,
                   ButtonWidget(
@@ -52,7 +61,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                               loginController.emailController.value.text.trim(),
                           context: context);
                     },
-                    color: kbluegreyColor,
+                    color: const Color(0xFF07A3B2),
                   )
                 ],
               )),

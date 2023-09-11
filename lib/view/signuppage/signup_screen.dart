@@ -31,8 +31,8 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        // width: MediaQuery.of(context).size.width,
+        // height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -42,14 +42,14 @@ class SignUpScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Row(
               // mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                     size: 40,
                   ),
@@ -57,7 +57,7 @@ class SignUpScreen extends StatelessWidget {
                     Navigator.pop(context); // Navigate to the previous screen
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 65,
                 ),
                 HeaderSection(
@@ -84,42 +84,60 @@ class SignUpScreen extends StatelessWidget {
                       key: signupmodel.signupformKey,
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 120,
                           ),
-                          TextFormField(
-                            controller: signupmodel.fullnameController,
-                            decoration: const InputDecoration(
-                              label: Text(fullnameText),
-                              border: OutlineInputBorder(),
-                              prefixIcon: Icon(
-                                Icons.person,
-                                size: 20.0,
+                          Container(
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(
+                                83,
+                                158,
+                                158,
+                                158,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                20,
                               ),
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return validNameText;
-                              }
-                              return null;
-                            },
+                            child: TextFormField(
+                              controller: signupmodel.fullnameController,
+                              decoration: const InputDecoration(
+                                label: Text(fullnameText),
+                                border: InputBorder.none,
+                                prefixIcon: Icon(
+                                  Icons.person,
+                                  size: 20.0,
+                                ),
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return validNameText;
+                                }
+                                return null;
+                              },
+                            ),
                           ),
                           kheight20,
-                          TextFormField(
-                            controller: signupmodel.numberController,
-                            decoration: const InputDecoration(
-                                label: Text(numberText),
-                                border: OutlineInputBorder(),
-                                prefixIcon: CountryCodeWidget()),
-                            keyboardType: TextInputType.number,
-                            validator: (value) {
-                              if (value == null ||
-                                  value.isEmpty ||
-                                  value.length != 10) {
-                                return validNumberText;
-                              }
-                              return null;
-                            },
+                          Container(
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(83, 158, 158, 158),
+                                borderRadius: BorderRadius.circular(20)),
+                            child: TextFormField(
+                              controller: signupmodel.numberController,
+                              decoration: const InputDecoration(
+                                  label: Text(numberText),
+                                  border: InputBorder.none,
+                                  prefixIcon: CountryCodeWidget()),
+                              keyboardType: TextInputType.number,
+                              validator: (value) {
+                                if (value == null ||
+                                    value.isEmpty ||
+                                    value.length != 10) {
+                                  return validNumberText;
+                                }
+                                return null;
+                              },
+                            ),
                           ),
                           kheight10,
                           EmailField(
