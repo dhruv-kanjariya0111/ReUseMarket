@@ -44,7 +44,7 @@ class MainScreen extends StatelessWidget {
                     //   builder: (context) => const ChatScreen(),
                     // ));
                   },
-                  icon: const Icon(Icons.message))
+                  icon: Icon(Icons.message))
             ],
           ),
         ),

@@ -49,23 +49,29 @@ class StreamBuilderWidget extends StatelessWidget {
               );
             }
 
-            return GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, crossAxisSpacing: 5, mainAxisSpacing: 5),
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                final gadget = Gadgets.fromSnapshot(documents[index]);
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 1,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5),
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  final gadget = Gadgets.fromSnapshot(documents[index]);
 
-                return InkWell(
-                  onTap: () => Get.to(() => ItemScreen(
-                        gadget: gadget,
-                        doc: documents[index].id,
-                      )),
-                  child: ItemContainer(
-                    gadget: gadget,
-                  ),
-                );
-              },
+                  return InkWell(
+                    onTap: () => Get.to(() => ItemScreen(
+                          gadget: gadget,
+                          doc: documents[index].id,
+                        )),
+                    child: ItemContainer(
+                      gadget: gadget,
+                    ),
+                  );
+                },
+              ),
             );
           } else {
             return const Center(

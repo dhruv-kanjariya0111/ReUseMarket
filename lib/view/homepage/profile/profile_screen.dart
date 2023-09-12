@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: AppBarWidget(title: AppLocalizations.of(context)!.editProfile),
+        child: AppBarWidget(title: AppLocalizations.of(context)!.account),
       ),
       body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
           stream: profile.docRef
@@ -52,8 +52,8 @@ class ProfileScreen extends StatelessWidget {
               return SingleChildScrollView(
                 child: Container(
                     padding: const EdgeInsets.all(10.0),
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
+                    // width: MediaQuery.of(context).size.width,
+                    // height: MediaQuery.of(context).size.height,
                     decoration: boxDecoration,
                     child: Column(
                       children: [
@@ -62,9 +62,8 @@ class ProfileScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              AppLocalizations.of(context)!
-                                  .welcome
-                                  .toUpperCase(),
+                              // AppLocalizations.of(context)!.hello.toUpperCase(),
+                              'Hello ,'.toUpperCase(),
                               style: TextStyle(
                                   fontSize: 18.0,
                                   color: Color(0xFF07A3B2),
@@ -76,7 +75,7 @@ class ProfileScreen extends StatelessWidget {
                                 data != null
                                     ? data[nameInMapText]
                                     : nameNullText,
-                                overflow: TextOverflow.fade,
+                                // overflow: TextOverflow.fade,
                                 style: const TextStyle(
                                     fontSize: 20.0,
                                     color: kblackColor,
@@ -86,6 +85,7 @@ class ProfileScreen extends StatelessWidget {
                           ],
                         ),
                         kheight10,
+
                         Text(
                           (data != null && data[emailInMapText] != null)
                               ? data[emailInMapText]
@@ -97,31 +97,56 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         ),
                         kheight20,
-                        SizedBox(
-                          width: 230.0,
-                          child: ElevatedButton(
-                              onPressed: () {
-                                Get.to(() => const EditProfile());
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFF07A3B2),
-                                  side: BorderSide.none,
-                                  shape: const StadiumBorder()),
-                              child: Text(
-                                AppLocalizations.of(context)!.editProfile,
-                                maxLines: 1,
-                                style: const TextStyle(
-                                    color: Color(0xFFD9ECC7),
-                                    fontWeight: FontWeight.bold),
-                              )),
+                        // SizedBox(
+                        //   width: 230.0,
+                        //   child: ElevatedButton(
+                        //       onPressed: () {
+                        //         Get.to(() => const EditProfile());
+                        //       },
+                        //       style: ElevatedButton.styleFrom(
+                        //           backgroundColor: Color(0xFF07A3B2),
+                        //           side: BorderSide.none,
+                        //           shape: const StadiumBorder()),
+                        //       child: Text(
+                        //         AppLocalizations.of(context)!.editProfile,
+                        //         maxLines: 1,
+                        //         style: const TextStyle(
+                        //             color: Color(0xFFD9ECC7),
+                        //             fontWeight: FontWeight.bold),
+                        //       )),
+                        // ),
+                        kheight20,
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                20,
+                              ),
+                              color: Colors.grey),
+                          child: ListTileWidget(
+                            title: AppLocalizations.of(context)!.editProfile,
+                            icon: Icons.location_on,
+                            onTap: () {
+                              Get.to(() => const EditProfile());
+                            },
+                          ),
                         ),
                         kheight20,
-                        ListTileWidget(
-                          title: AppLocalizations.of(context)!.savedAddresses,
-                          icon: Icons.location_on,
-                          onTap: () {
-                            Get.to(() => const SavedAddresses());
-                          },
+
+                        Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                20,
+                              ),
+                              color: Colors.grey),
+                          child: ListTileWidget(
+                            title: AppLocalizations.of(context)!.savedAddresses,
+                            icon: Icons.location_on,
+                            onTap: () {
+                              Get.to(() => const SavedAddresses());
+                            },
+                          ),
                         ),
                         // ListTileWidget(
                         //   title: AppLocalizations.of(context)!.myGadget,

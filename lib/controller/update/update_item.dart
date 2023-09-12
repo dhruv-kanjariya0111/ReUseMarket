@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,7 @@ class UpdateController extends GetxController {
     return getItemDoc.data();
   }
 
+  Map<String, dynamic> data = {};
   TextEditingController itemTitleController = TextEditingController();
   TextEditingController itemDetailController = TextEditingController();
   TextEditingController dayController = TextEditingController();
@@ -66,9 +68,9 @@ class UpdateController extends GetxController {
       {required doc,
       required title,
       required details,
-      // required dayPrice,
-      // required weekPrice,
-      // required monthPrice,
+      required dayPrice,
+      required weekPrice,
+      required monthPrice,
       required category,
       required selectedfirstImage,
       required selectedsecondImage,
@@ -100,9 +102,9 @@ class UpdateController extends GetxController {
     await itemDoc.update({
       'title': title,
       'details': details,
-      // 'dayPrice': dayPrice,
-      // 'weekPrice': weekPrice,
-      // 'monthPrice': monthPrice,
+      'dayPrice': dayPrice,
+      'weekPrice': weekPrice,
+      'monthPrice': monthPrice,
       'category': category,
     }).then((value) {
       Get.back();
@@ -128,4 +130,36 @@ class UpdateController extends GetxController {
   //   thirdImage = ''.obs;
   //   super.dispose();
   // }
+
+  Future<Map<String, dynamic>> getDocument() async {
+    // Reference to the document you want to retrieve
+    DocumentReference docRef = FirebaseFirestore.instance
+        .collection('Users')
+        .doc(FirebaseAuth.instance.currentUser!.email);
+
+    // Fetch the document data
+    DocumentSnapshot snapshot = await docRef.get();
+
+    if (snapshot.exists) {
+      // Document exists, you can access its data
+      data = snapshot.data() as Map<String, dynamic>;
+      print(data);
+    } else {
+      // Document does not exist
+      print('Document does not exist');
+    }
+
+    return data;
+  }
+
+  assignData() async {
+    data = await getDocument();
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    assignData();
+  }
 }

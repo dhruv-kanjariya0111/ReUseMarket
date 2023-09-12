@@ -10,10 +10,6 @@ import 'package:ReUseMarket/view/core/screen_container_widget.dart';
 import 'package:ReUseMarket/view/core/string_consts.dart';
 import 'package:ReUseMarket/view/core/widgets.dart';
 import 'package:ReUseMarket/view/homepage/home/itemscreen/widget/image_card.dart';
-import 'package:ReUseMarket/view/homepage/home/itemscreen/widget/review_widget.dart';
-import 'package:ReUseMarket/view/homepage/home/itemscreen/widget/selectplan_screen.dart';
-import 'package:ReUseMarket/view/homepage/home/widget/rating_widget.dart';
-import 'package:ReUseMarket/view/homepage/profile/screens/mygadgetscreen/update_gadgets_screen.dart';
 
 class ItemScreen extends StatelessWidget {
   final String doc;
@@ -38,6 +34,8 @@ class ItemScreen extends StatelessWidget {
     if (gadget.email == FirebaseAuth.instance.currentUser!.email) {
       isOwner = true;
     }
+    print('${updateGadget.data['name']}');
+    updateGadget.assignData();
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(60),
@@ -48,6 +46,7 @@ class ItemScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // kheight20,
               kheight20,
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -60,13 +59,13 @@ class ItemScreen extends StatelessWidget {
                     kwidth10,
                     ImageCard(imageUrl: gadget.image2),
                     kwidth10,
-                    ImageCard(imageUrl: gadget.image3),
+                    ImageCard(imageUrl: gadget.image3)
                   ],
                 ),
               ),
               kheight10,
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(gadget.title,
                       style: Theme.of(context)
@@ -74,7 +73,6 @@ class ItemScreen extends StatelessWidget {
                           .headlineSmall!
                           .copyWith(
                               color: kblackColor, fontWeight: FontWeight.bold)),
-                  kheight20,
                   RichText(
                     text: TextSpan(
                       children: [
@@ -105,79 +103,90 @@ class ItemScreen extends StatelessWidget {
               kDivider(context),
               kheight10,
               Text(
-                detailsText,
+                "Product's Description",
                 style: Theme.of(context)
                     .textTheme
-                    .headlineSmall!
+                    .titleLarge!
                     .copyWith(color: kblackColor, fontWeight: FontWeight.bold),
               ),
               kheight10,
               Text(
                 bulletText,
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: kblackColor,
                     ),
               ),
               kheight10,
               kDivider(context),
               kheight10,
-              SizedBox(
-                width: 130.0,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => MessageScreen(
-                        recieverEmail: gadget.email,
-                        recieverName: "",
-                        senderName: '',
-                      ),
-                    ));
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: kBlue900,
-                      side: BorderSide.none,
-                      shape: const StadiumBorder()),
-                  child: Text(
-                    "Message",
-                    maxLines: 1,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Owner's info",
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: kblackColor,
+                        ),
                   ),
-                ),
-              ),
-              kheight10,
-              isOwner
-                  ? BookingButton(
-                      onpressed: () {
-                        Get.to(() => UpdateGadget(
-                              gadget: gadget,
-                              doc: doc,
-                            ));
-                      },
-                      color: kBlue900,
-                      text: editItemText)
-                  : BookingButton(
-                      onpressed: () {
-                        gadget.available == 'true'
-                            ? Get.to(() =>
-                                SelectPlanScreen(gadget: gadget, doc: doc))
-                            : null;
-                      },
-                      color: gadget.available == 'true' ? kgreenColor : kgrey,
-                      text: gadget.available == 'true'
-                          ? selectPlanText
-                          : 'Unavailable'),
-              kheight20,
-              Text(
-                "Reviews",
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      color: kblackColor,
-                      fontWeight: FontWeight.bold,
+                  Card(
+                    child: ListTile(
+                      title: Text(
+                        'Name : ' + gadget.name,
+                        style:
+                            Theme.of(context).textTheme.titleMedium!.copyWith(
+                                  color: kblackColor,
+                                ),
+                      ),
+                      subtitle: Text(
+                        'Mail : ' + gadget.email,
+                        style:
+                            Theme.of(context).textTheme.titleMedium!.copyWith(
+                                  color: kblackColor,
+                                ),
+                      ),
                     ),
+                  ),
+                  kheight20,
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => MessageScreen(
+                            recieverEmail: gadget.email,
+                            recieverName: gadget.name,
+                            senderName: updateGadget.data['name'],
+                          ),
+                        ));
+                      },
+                      style: ElevatedButton.styleFrom(
+                          // fixedSize: const Size(300, 40),
+                          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+                          side: const BorderSide(width: 2, color: kwhiteColor),
+                          shape: const StadiumBorder()),
+                      child: const Text(
+                        "Click Here to Message",
+                        maxLines: 1,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               kheight10,
-              ReviewWidget(
-                ownerEmail: gadget.email,
-                title: gadget.title,
-              ),
+              kheight20,
+
+              // Text(
+              //   "Reviews",
+              //   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              //         color: kblackColor,
+              //         fontWeight: FontWeight.bold,
+              //       ),
+              // ),
+              // kheight10,
+              // ReviewWidget(
+              //   ownerEmail: gadget.email,
+              //   title: gadget.title,
+              // ),
             ],
           ),
         ),
@@ -198,24 +207,22 @@ class BookingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        height: 50.0,
-        width: 230.0,
-        child: ElevatedButton(
-          onPressed: onpressed,
-          style: ElevatedButton.styleFrom(
-              backgroundColor: color,
-              side: BorderSide.none,
-              shape: const StadiumBorder()),
-          child: Text(
-            text.toUpperCase(),
-            maxLines: 1,
-            style: Theme.of(context)
-                .textTheme
-                .labelLarge!
-                .copyWith(color: kwhiteColor, fontWeight: FontWeight.bold),
-          ),
+    return SizedBox(
+      height: 50.0,
+      width: 230.0,
+      child: ElevatedButton(
+        onPressed: onpressed,
+        style: ElevatedButton.styleFrom(
+            backgroundColor: color,
+            side: BorderSide.none,
+            shape: const StadiumBorder()),
+        child: Text(
+          text.toUpperCase(),
+          maxLines: 1,
+          style: Theme.of(context)
+              .textTheme
+              .labelLarge!
+              .copyWith(color: kwhiteColor, fontWeight: FontWeight.bold),
         ),
       ),
     );

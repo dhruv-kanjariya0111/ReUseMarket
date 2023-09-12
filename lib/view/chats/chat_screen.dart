@@ -40,7 +40,7 @@ class ChatScreen extends StatelessWidget {
                 return const Center(child: Text('No chats found.'));
               }
               return ListView.builder(
-                padding: const EdgeInsets.only(top: 10.0),
+                // padding: const EdgeInsets.only(top: 10.0),
                 itemCount: items.length,
                 itemBuilder: (context, index) {
                   final chat = items[index];
@@ -50,8 +50,16 @@ class ChatScreen extends StatelessWidget {
                     return const Center(child: Text('No chats found.'));
                   }
 
-                  return Card(
-                    color: Color(0xFFD9ECC7),
+                  return Container(
+                    margin: EdgeInsets.only(top: 4, left: 4, right: 4),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.blueAccent.shade100,
+                      ),
+                      color: Colors.blueGrey[100],
+                    ),
                     child: ListTile(
                       leading: const CircleAvatar(
                         child: Icon(Icons.person),

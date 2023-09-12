@@ -38,25 +38,31 @@ class AddItemScreen extends StatelessWidget {
                     kheight20,
                     Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFD9ECC7),
+                        color: Colors.grey,
                         borderRadius: BorderRadius.circular(
-                          30,
+                          25,
                         ),
                       ),
-                      child: TextFormField(
-                        controller: itemModel.itemTitleController,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.add_circle_outline_outlined),
-                          labelText: titleText,
-                          border: InputBorder.none,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(40),
+                        child: Card(
+                          child: TextFormField(
+                            controller: itemModel.itemTitleController,
+                            decoration: const InputDecoration(
+                              prefixIcon:
+                                  Icon(Icons.add_circle_outline_outlined),
+                              labelText: titleText,
+                              border: InputBorder.none,
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return validTitleText;
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
                         ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return validTitleText;
-                          } else {
-                            return null;
-                          }
-                        },
                       ),
                     ),
                     kheight20,
@@ -119,7 +125,7 @@ class AddItemScreen extends StatelessWidget {
                       },
                       width: 400.0,
                       height: 40.0,
-                      // color: kgrey,
+                      color: kgrey,
                     ),
                     kheight10,
                     const ImageSelectWidget(),

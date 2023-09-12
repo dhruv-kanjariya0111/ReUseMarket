@@ -19,27 +19,31 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      shadowColor: Color(0xFF07A3B2),
-      backgroundColor: Color(0xFFD9ECC7),
+      shadowColor: const Color(0xFF07A3B2),
+      backgroundColor: const Color(0xFFD9ECC7),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const SizedBox(
-              height: 80.0,
+              height: 60.0,
             ),
             const Text(
               signedAsText,
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 18),
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
-            Text(
-              email,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Text(
+                email,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
             ),
-            kheight10,
+            kheight20,
             kheight20,
             ListTileWidget(
               height: 50.0,
