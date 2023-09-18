@@ -13,7 +13,7 @@ import 'package:flutter_localizations/src/cupertino_localizations.dart';
 import 'package:flutter_localizations/src/widgets_localizations.dart';
 
 Future<void> main() async {
-  await WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
   runApp(const MyApp());
