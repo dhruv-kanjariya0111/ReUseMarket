@@ -30,52 +30,106 @@ class AddAddressWidget extends StatelessWidget {
             child: Column(children: [
               kheight20,
               kheight20,
-              TextFormField(
-                controller: addressModel.houseNameController,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "House.no/name"),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please provide the necessary details";
-                  }
-                  return null;
-                },
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.only(left: 10),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    10,
+                  ),
+                  border: Border.all(
+                    width: 3,
+                    color: Colors.grey,
+                  ),
+                ),
+                child: TextFormField(
+                  controller: addressModel.houseNameController,
+                  decoration: const InputDecoration(
+                      border: InputBorder.none, labelText: "House.no/name"),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please provide the necessary details";
+                    }
+                    return null;
+                  },
+                ),
               ),
               kheight20,
-              TextFormField(
-                controller: addressModel.areaController,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Road name,Area,Colony"),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please provide the necessary details";
-                  }
-                  return null;
-                },
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.only(left: 10),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    10,
+                  ),
+                  border: Border.all(
+                    width: 3,
+                    color: Colors.grey,
+                  ),
+                ),
+                child: TextFormField(
+                  controller: addressModel.areaController,
+                  decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      labelText: "Road name,Area,Colony"),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please provide the necessary details";
+                    }
+                    return null;
+                  },
+                ),
               ),
               kheight20,
-              TextFormField(
-                controller: addressModel.cityController,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "City"),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please provide the necessary details";
-                  }
-                  return null;
-                },
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.only(left: 10),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    10,
+                  ),
+                  border: Border.all(
+                    width: 3,
+                    color: Colors.grey,
+                  ),
+                ),
+                child: TextFormField(
+                  controller: addressModel.cityController,
+                  decoration: const InputDecoration(
+                      border: InputBorder.none, labelText: "City"),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please provide the necessary details";
+                    }
+                    return null;
+                  },
+                ),
               ),
               kheight20,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(
-                    width: 120.0,
+                  Container(
+                    width: 120,
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.only(left: 10),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        10,
+                      ),
+                      border: Border.all(
+                        width: 3,
+                        color: Colors.grey,
+                      ),
+                    ),
                     child: TextFormField(
                       controller: addressModel.pincodeController,
                       decoration: const InputDecoration(
-                          border: OutlineInputBorder(), labelText: "Pincode"),
+                          border: InputBorder.none, labelText: "Pincode"),
                       keyboardType: TextInputType.number,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -88,9 +142,22 @@ class AddAddressWidget extends StatelessWidget {
                     ),
                   ),
                   kwidth20,
-                  SizedBox(
-                    width: 120.0,
+                  Container(
+                    width: 120,
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.only(left: 10),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        10,
+                      ),
+                      border: Border.all(
+                        width: 3,
+                        color: Colors.grey,
+                      ),
+                    ),
                     child: TextFormField(
+                      textAlign: TextAlign.center,
                       controller: addressModel.stateController,
                       onTap: () {
                         showStateSelectorDialog(context: context);
@@ -98,7 +165,7 @@ class AddAddressWidget extends StatelessWidget {
                       focusNode: addressModel.focusNode,
                       readOnly: true,
                       decoration: const InputDecoration(
-                          border: OutlineInputBorder(), labelText: "State"),
+                          border: InputBorder.none, labelText: "State"),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Please provide the necessary details";
@@ -110,22 +177,31 @@ class AddAddressWidget extends StatelessWidget {
                 ],
               ),
               kheight20,
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 50.0,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    final isValid =
-                        addressModel.addressKey.currentState!.validate();
-                    if (!isValid) return;
+              ElevatedButton(
+                onPressed: () async {
+                  final isValid =
+                      addressModel.addressKey.currentState!.validate();
+                  if (!isValid) return;
 
-                    addAddress(context: context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF07A3B2)),
-                  child: const Text("Save address"),
+                  addAddress(context: context);
+                },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Color(0xFF07A3B2), // Text color
+                  elevation: 2, // Shadow elevation
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 30, vertical: 15), // Button padding
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(10), // Button border radius
+                  ),
                 ),
-              )
+                child: const Text(
+                  "Save address",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+             
             ]),
           ),
         ),

@@ -85,8 +85,7 @@ class ItemScreen extends StatelessWidget {
                                     color: kblackColor,
                                     fontWeight: FontWeight.bold)),
                         TextSpan(
-                            // text: "₹${gadget.dayPrice}/day",
-                            text: "₹${10}",
+                            text: "₹${gadget.weekPrice}",
                             style: Theme.of(context)
                                 .textTheme
                                 .headlineSmall!
@@ -131,19 +130,41 @@ class ItemScreen extends StatelessWidget {
                   ),
                   Card(
                     child: ListTile(
-                      title: Text(
-                        'Name : ' + gadget.name,
-                        style:
-                            Theme.of(context).textTheme.titleMedium!.copyWith(
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Name : ' + gadget.name,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
                                   color: kblackColor,
                                 ),
-                      ),
-                      subtitle: Text(
-                        'Mail : ' + gadget.email,
-                        style:
-                            Theme.of(context).textTheme.titleMedium!.copyWith(
+                          ),
+                          SizedBox(
+                            height: 2,
+                          ),
+                          Text(
+                            'Mail : ' + gadget.email,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(
                                   color: kblackColor,
                                 ),
+                          ),
+                          SizedBox(
+                            height: 2,
+                          ),
+                          Text(
+                            'Address : ' + gadget.area + ', ' + gadget.city,
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      color: kblackColor,
+                                    ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

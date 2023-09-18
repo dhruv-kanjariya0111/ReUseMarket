@@ -17,7 +17,7 @@ class EditProfile extends StatelessWidget {
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(60),
-        child: AppBarWidget(title: appName),
+        child: AppBarWidget(title: editProfText),
       ),
       body: Container(
         padding: const EdgeInsets.all(10.0),

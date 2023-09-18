@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ReUseMarket/model/itemmodel/item_model.dart';
-import 'package:ReUseMarket/view/core/const_colors.dart';
 import 'package:ReUseMarket/view/core/string_consts.dart';
 
 class AmountContainer extends StatelessWidget {
@@ -21,11 +20,13 @@ class AmountContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 8.0),
-      height: height ?? 60,
-      width: width ?? 60,
+      // padding: const EdgeInsets.only(left: 10),
       decoration: BoxDecoration(
-          color: kwhiteColor, borderRadius: BorderRadius.circular(20.0)),
+          border: Border.all(
+            width: 3,
+            color: Colors.grey,
+          ),
+          borderRadius: BorderRadius.circular(30)),
       child: TextFormField(
         controller: controller,
         onChanged: onChanged,
@@ -41,9 +42,11 @@ class AmountContainer extends StatelessWidget {
           }
         },
         keyboardType: TextInputType.number,
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.start,
         decoration: InputDecoration(
-            border: const OutlineInputBorder(), labelText: hinText),
+            border: InputBorder.none,
+            hintText: hinText,
+            prefixIcon: const Icon(Icons.monetization_on_outlined)),
       ),
     );
   }

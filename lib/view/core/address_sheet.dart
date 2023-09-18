@@ -18,104 +18,83 @@ void showAddressSheet(
   showModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
-      return Container(
-        padding: const EdgeInsets.all(10.0),
-        height: 500.0,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            kheight20,
-            const Center(
-              child: Text(
-                'Select your address',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          kheight20,
+          const Center(
+            child: Text(
+              'Select your address',
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            kheight20,
-            StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection("Users")
-                  .doc(FirebaseAuth.instance.currentUser!.email)
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  Map<String, dynamic>? documents = snapshot.data!.data();
-                  if (documents == null)
-                    return Center(child: Text("Add address"));
-                  if (documents['addresses'] == null) {
-                    return const Center(child: Text("Add address"));
-                  }
-                  List<dynamic> address =
-                      (documents['addresses'] as List<dynamic>);
-
-                  if (address.isEmpty) {
-                    return const Center(child: SizedBox());
-                  }
-                  return Expanded(
-                    child: ListView.builder(
-                        itemCount: address.length,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () async {
-                              isAddItem == true
-                                  ? addAddressForItemFunction(
-                                      address: address[index])
-                                  : addAddressFunction(
-                                      doc: doc,
-                                      validText: validText,
-                                      gadget: gadget,
-                                      price: price,
-                                      address: address[index]);
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.only(bottom: 20.0),
-                              padding: const EdgeInsets.all(8.0),
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.grey,
-                                        blurRadius: 2.0,
-                                        spreadRadius: 2.0)
-                                  ],
-                                  border: Border.all(color: Colors.grey),
-                                  color: kwhiteColor),
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    kheight10,
-                                    Text(address[index]['houseNo']!),
-                                    kheight10,
-                                    Text(address[index]['area']!),
-                                    kheight10,
-                                    Text(address[index]['city']!),
-                                    kheight10,
-                                    Text(address[index]['pincode']!),
-                                    kheight10,
-                                    Text(address[index]['state']!),
-                                    kheight10,
-                                  ]),
-                            ),
-                          );
-                        }),
-                  );
-                } else {
-                  return const Center(
-                    child: Text("Add address"),
-                  );
+          ),
+          kheight20,
+          StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection("Users")
+                .doc(FirebaseAuth.instance.currentUser!.email)
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                Map<String, dynamic>? documents = snapshot.data!.data();
+                if (documents == null)
+                  return const Center(child: Text("Add address"));
+                if (documents['addresses'] == null) {
+                  return const Center(child: Text("Add address"));
                 }
-              },
-            ),
-            Center(
-              child: TextButton.icon(
-                  onPressed: () {
-                    Get.to(() => const AddAddressWidget());
-                  },
-                  icon: const Icon(Icons.home),
-                  label: const Text("Add new address")),
-            )
-          ],
-        ),
+                List<dynamic> address =
+                    (documents['addresses'] as List<dynamic>);
+
+                if (address.isEmpty) {
+                  return const Center(child: SizedBox());
+                }
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: address.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () async {
+                                isAddItem == true
+                                    ? addAddressForItemFunction(
+                                        address: address[index])
+                                    : addAddressFunction(
+                                        doc: doc,
+                                        validText: validText,
+                                        gadget: gadget,
+                                        price: price,
+                                        address: address[index]);
+                              },
+                              child: Card(
+                                color: Colors.blueGrey[100],
+                                child: ListTile(
+                                  title: Text('Address : '
+                                      '${address[index]['houseNo']!}, ${address[index]['area']!}, ${address[index]['city']!}, ${address[index]['pincode']!}, ${address[index]['state']!}'),
+                                ),
+                              ),
+                            );
+                          }),
+                    ],
+                  ),
+                );
+              } else {
+                return const Center(
+                  child: Text("Add address"),
+                );
+              }
+            },
+          ),
+          Center(
+            child: TextButton.icon(
+                onPressed: () {
+                  Get.to(() => const AddAddressWidget());
+                },
+                icon: const Icon(Icons.home),
+                label: const Text("Add new address")),
+          )
+        ],
       );
     },
   );

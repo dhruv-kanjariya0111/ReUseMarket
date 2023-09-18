@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ReUseMarket/main.dart';
 import 'package:ReUseMarket/model/loginmodel/mobx/login_mobx.dart';
 import 'package:ReUseMarket/view/core/appbar_widget.dart';
 import 'package:ReUseMarket/view/core/button_widget.dart';
-import 'package:ReUseMarket/view/core/const_colors.dart';
 import 'package:ReUseMarket/view/core/string_consts.dart';
 import 'package:ReUseMarket/view/core/textformfield.dart';
 import 'package:ReUseMarket/view/core/widgets.dart';

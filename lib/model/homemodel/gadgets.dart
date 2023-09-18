@@ -10,7 +10,7 @@ class Gadgets {
   final String image2;
   final String image3;
   // final String dayPrice;
-  // final String weekPrice;
+  final String weekPrice;
   // final String monthPrice;
   final String available;
   final Map<String, dynamic> address;
@@ -29,7 +29,7 @@ class Gadgets {
     required this.image2,
     required this.image3,
     // required this.dayPrice,
-    // required this.weekPrice,
+    required this.weekPrice,
     // required this.monthPrice,
     required this.available,
     required this.address,
@@ -39,6 +39,7 @@ class Gadgets {
     required this.pincode,
     required this.state,
     required this.name,
+    // required String weekPrice,
   });
 
   factory Gadgets.fromSnapshot(DocumentSnapshot snapshot) {
@@ -52,7 +53,7 @@ class Gadgets {
         image2: data['image2'],
         image3: data['image3'],
         // dayPrice: data['dayPrice'],
-        // weekPrice: data['weekPrice'],
+        weekPrice: data['weekPrice'],
         // monthPrice: data['monthPrice'],
         available: data['available'],
         name: data['name'],
@@ -75,7 +76,7 @@ class Gadgets {
       'image2': image2,
       'image3': image3,
       // 'dayPrice': dayPrice,
-      // 'weekPrice': weekPrice,
+      'weekPrice': weekPrice,
       // 'monthPrice': monthPrice,
       'available': available,
       'address': {

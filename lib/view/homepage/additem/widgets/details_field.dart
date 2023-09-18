@@ -9,24 +9,36 @@ class DetailsFieldWidget extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius:
-              BorderRadius.circular(20.0), // Adjust the border radius as needed
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(width: 3, color: Colors.grey),
+        borderRadius: BorderRadius.circular(
+          30,
         ),
-        labelText: detailsText,
-        prefixIcon: const Icon(Icons.description),
       ),
-      maxLines: 3,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return validDetailsText;
-        } else {
-          return null;
-        }
-      },
+      child: TextFormField(
+        controller: controller,
+        decoration: const InputDecoration(
+          labelText: detailsText,
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+          labelStyle: TextStyle(
+            fontSize: 16.0, // Adjust font size as needed
+            color: Colors.grey, // Adjust color as needed
+            fontWeight: FontWeight.normal,
+            // Adjust font weight as needed
+          ),
+          prefixIcon: Icon(Icons.description),
+        ),
+        maxLines: 3,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return validDetailsText;
+          } else {
+            return null;
+          }
+        },
+      ),
     );
   }
 }

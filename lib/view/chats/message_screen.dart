@@ -29,6 +29,7 @@ class MessageScreen extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: StreamBuilder(
+              
                 stream: FirebaseFirestore.instance
                     .collection("chat")
                     .doc(getChatId(

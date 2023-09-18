@@ -117,12 +117,17 @@ class ProfileScreen extends StatelessWidget {
                         // ),
                         kheight20,
                         Container(
+                          margin: EdgeInsets.all(10),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                20,
-                              ),
-                              color: Colors.grey),
+                            borderRadius: BorderRadius.circular(
+                              30,
+                            ),
+                            border: Border.all(
+                              width: 3,
+                              color: Colors.grey,
+                            ),
+                          ),
                           child: ListTileWidget(
                             title: AppLocalizations.of(context)!.editProfile,
                             icon: Icons.location_on,
@@ -135,11 +140,16 @@ class ProfileScreen extends StatelessWidget {
 
                         Container(
                           alignment: Alignment.center,
+                          margin: EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                20,
-                              ),
-                              color: Colors.grey),
+                            borderRadius: BorderRadius.circular(
+                              30,
+                            ),
+                            border: Border.all(
+                              width: 3,
+                              color: Colors.grey,
+                            ),
+                          ),
                           child: ListTileWidget(
                             title: AppLocalizations.of(context)!.savedAddresses,
                             icon: Icons.location_on,

@@ -27,7 +27,7 @@ class LoginPage extends StatelessWidget {
                 title: logintext,
                 subtitle: welcomeBack,
               ),
-              LoginSection()
+              Expanded(child: LoginSection())
             ],
           ),
         ),

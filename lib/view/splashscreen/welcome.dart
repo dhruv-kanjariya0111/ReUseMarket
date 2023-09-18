@@ -63,7 +63,7 @@ class WelcomeScreen extends StatelessWidget {
                           //     builder: (context) => const VerifyEmailScreen(),
                           //   ),
                           // );
-                          Get.to(() => const VerifyEmailScreen());
+                          Get.offAll(const VerifyEmailScreen());
                         } else {
                           // If the user's email is verified, navigate to the main content
                           // You can replace MainPage with your actual main content page
@@ -72,7 +72,7 @@ class WelcomeScreen extends StatelessWidget {
                           //   MaterialPageRoute(
                           //       builder: (context) => MainScreen()),
                           // );
-                          Get.to(() => const MainScreen());
+                          Get.offAll(const MainScreen());
                         }
                       } else {
                         // If no user is logged in, navigate to the LoginPage
@@ -80,7 +80,7 @@ class WelcomeScreen extends StatelessWidget {
                         //   context,
                         //   MaterialPageRoute(builder: (context) => LoginPage()),
                         // );
-                        Get.off(() => const LoginPage());
+                        Get.offAll(const LoginPage());
                       }
                       ;
                     },

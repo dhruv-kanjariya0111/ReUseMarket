@@ -1,3 +1,4 @@
+import 'package:ReUseMarket/view/homepage/additem/widgets/amount_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ReUseMarket/main.dart';
@@ -38,30 +39,26 @@ class AddItemScreen extends StatelessWidget {
                     kheight20,
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.grey,
+                        border: Border.all(width: 3, color: Colors.grey),
                         borderRadius: BorderRadius.circular(
                           25,
                         ),
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(40),
-                        child: Card(
-                          child: TextFormField(
-                            controller: itemModel.itemTitleController,
-                            decoration: const InputDecoration(
-                              prefixIcon:
-                                  Icon(Icons.add_circle_outline_outlined),
-                              labelText: titleText,
-                              border: InputBorder.none,
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return validTitleText;
-                              } else {
-                                return null;
-                              }
-                            },
+                      child: Container(
+                        child: TextFormField(
+                          controller: itemModel.itemTitleController,
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.add_circle_outline_outlined),
+                            labelText: titleText,
+                            border: InputBorder.none,
                           ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return validTitleText;
+                            } else {
+                              return null;
+                            }
+                          },
                         ),
                       ),
                     ),
@@ -84,6 +81,14 @@ class AddItemScreen extends StatelessWidget {
                           color: kwhiteColor, fontWeight: FontWeight.w500),
                     ),
                     kheight10,
+
+                    AmountContainer(
+                      hinText: weekText,
+                      controller: itemModel.weekController,
+                      // width: 200.0,
+                    ),
+                    kheight20,
+
                     // Row(
                     //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     //   children: [

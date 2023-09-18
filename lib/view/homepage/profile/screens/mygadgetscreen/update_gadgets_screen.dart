@@ -11,7 +11,6 @@ import 'package:ReUseMarket/view/core/const_colors.dart';
 import 'package:ReUseMarket/view/core/screen_container_widget.dart';
 import 'package:ReUseMarket/view/core/string_consts.dart';
 import 'package:ReUseMarket/view/core/widgets.dart';
-import 'package:ReUseMarket/view/homepage/additem/widgets/amount_widget.dart';
 import 'package:ReUseMarket/view/homepage/additem/widgets/details_field.dart';
 import 'package:ReUseMarket/view/homepage/additem/widgets/dropdownlist_widget.dart';
 import 'package:ReUseMarket/view/homepage/profile/widget/image_container.dart';

@@ -1,5 +1,6 @@
 import 'package:ReUseMarket/view/homepage/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:ReUseMarket/model/loginmodel/mobx/login_mobx.dart';
 import 'package:ReUseMarket/view/core/button_widget.dart';
@@ -20,15 +21,17 @@ class LoginSection extends StatelessWidget {
   static LoginController loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-          color: kwhiteColor,
+        margin: EdgeInsets.only(top: 20),
+        decoration: BoxDecoration(
+          color: Colors.grey.shade100.withOpacity(0.8),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(0.0),
-            topRight: Radius.circular(130.0),
+            topRight: Radius.circular(100.0),
           ),
         ),
         child: Padding(
@@ -38,9 +41,11 @@ class LoginSection extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(height: 100),
                 EmailField(
-                    emailController: loginController.emailController.value),
-                kheight20,
+                  emailController: loginController.emailController.value,
+                ),
+                SizedBox(height: 20),
                 PasswordField(
                   passwordController: loginController.passwordController.value,
                 ),
@@ -84,7 +89,7 @@ class LoginSection extends StatelessWidget {
                     InkWell(
                         onTap: () async {
                           await siginInWithGoogle(context: context);
-                          Get.to(MainScreen());
+                          Get.off(MainScreen());
                         },
                         child: const SignInContainer())
                   ],

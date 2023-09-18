@@ -15,7 +15,7 @@ class ItemModel extends GetxController {
   TextEditingController itemTitleController = TextEditingController();
   TextEditingController itemDetailController = TextEditingController();
   // TextEditingController dayController = TextEditingController();
-  // TextEditingController weekController = TextEditingController();
+  TextEditingController weekController = TextEditingController();
   // TextEditingController monthController = TextEditingController();
   final itemformKey = GlobalKey<FormState>();
   var dropdownValue = 'Electronics'.obs;
@@ -79,6 +79,7 @@ class ItemModel extends GetxController {
         File file = File(imageFileList[i].path);
         if (i == 0) {
           image1Url = await uploadFile(file);
+          print(image1Url);
         } else if (i == 1) {
           image2Url = await uploadFile(file);
         } else {
@@ -90,7 +91,7 @@ class ItemModel extends GetxController {
       String category = categoryValue;
       String itemDetails = itemDetailController.text.trim();
       // String dayPrice = dayController.text.trim();
-      // String weekPrice = weekController.text.trim();
+      String weekPrice = weekController.text.trim();
       // String monthPrice = monthController.text.trim();
       final docUser = FirebaseFirestore.instance.collection(appName);
 
@@ -103,7 +104,7 @@ class ItemModel extends GetxController {
           image2: image2Url,
           image3: image3Url,
           // dayPrice: dayPrice,
-          // weekPrice: weekPrice,
+          weekPrice: weekPrice,
           address: address,
           // monthPrice: monthPrice,
           available: 'true',
@@ -125,7 +126,7 @@ class ItemModel extends GetxController {
       itemTitleController.clear();
       itemDetailController.clear();
       // dayController.clear();
-      // weekController.clear();
+      weekController.clear();
       // monthController.clear();
       imageFileList.clear();
     } on Exception catch (e) {

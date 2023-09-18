@@ -53,7 +53,7 @@ class StreamBuilderWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 1,
+                    childAspectRatio: 1 / 1,
                     crossAxisCount: 2,
                     crossAxisSpacing: 5,
                     mainAxisSpacing: 5),

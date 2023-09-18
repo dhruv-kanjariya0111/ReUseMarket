@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           elevation: 10,
-          backgroundColor: const Color(0xFFD9ECC7),
+          backgroundColor: Colors.blueGrey[200],
           //Colors.orange[900],
           toolbarHeight: 0.0,
           bottom: TabBar(
@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
             indicator: BoxDecoration(
               borderRadius:
                   BorderRadius.circular(30), // Customize the indicator shape
-              color: Color.fromARGB(123, 255, 144, 144), // Custom
+              color: Color.fromARGB(255, 255, 255, 255), // Custom
             ), //
             isScrollable: true,
             labelColor: Color(0xFF07A3B2),

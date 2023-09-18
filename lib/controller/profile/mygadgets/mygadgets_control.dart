@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ReUseMarket/view/core/const_colors.dart';
 
@@ -26,7 +27,7 @@ class MyGadgetsController extends GetxController {
     query.doc(doc).delete().whenComplete(() => Get.snackbar(
         "Your gadget deleted", "",
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: kgreenColor,
-        colorText: kwhiteColor));
+        backgroundColor: Colors.yellow.shade100,
+        colorText: kblackColor));
   }
 }
