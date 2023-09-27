@@ -9,14 +9,16 @@ class AmountContainer extends StatelessWidget {
   final Function(String)? onChanged;
   final double? height;
   final double? width;
-  const AmountContainer(
+  final FocusNode focusNode;
+  AmountContainer(
       {super.key,
       required this.hinText,
       required this.controller,
+      required this.focusNode,
       this.onChanged,
       this.height,
       this.width});
-  static ItemModel itemModel = Get.put(ItemModel());
+  // final ItemModel itemModel = Get.put(ItemModel());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,6 +31,7 @@ class AmountContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(30)),
       child: TextFormField(
         controller: controller,
+        focusNode: focusNode,
         onChanged: onChanged,
         validator: (value) {
           if (value == null || value.isEmpty) {

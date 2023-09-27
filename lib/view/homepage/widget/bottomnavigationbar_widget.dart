@@ -9,7 +9,7 @@ var selectedPage = 0;
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({super.key});
-  static HomeGetx homeController = Get.put(HomeGetx());
+  static final HomeGetx homeController = Get.put(HomeGetx());
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -37,20 +37,20 @@ class BottomNavigationBarWidget extends StatelessWidget {
                   size: 25.0,
                 ),
                 label: AppLocalizations.of(context)!.addItem),
-            BottomNavigationBarItem(
-                icon: const Icon(
-                  FontAwesomeIcons.upload,
-                  // color: kblackColor,
-                  size: 25.0,
-                ),
-                label: AppLocalizations.of(context)!.order),
             // BottomNavigationBarItem(
             //     icon: const Icon(
-            //       FontAwesomeIcons.person,
-            //       color: kblackColor,
-            //       size: 20.0,
+            //       FontAwesomeIcons.upload,
+            //       // color: kblackColor,
+            //       size: 25.0,
             //     ),
-            //     label: AppLocalizations.of(context)!.account),
+            //     label: AppLocalizations.of(context)!.order),
+            BottomNavigationBarItem(
+                icon: const Icon(
+                  FontAwesomeIcons.person,
+                  // color: kblackColor,
+                  size: 20.0,
+                ),
+                label: AppLocalizations.of(context)!.account),
           ]),
     );
   }

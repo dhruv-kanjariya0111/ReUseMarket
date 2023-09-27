@@ -11,8 +11,6 @@ class AddressController extends GetxController {
 
   GlobalKey<FormState> addressKey = GlobalKey<FormState>();
   
-
-  
   TextEditingController stateController = TextEditingController();
 
   FocusNode focusNode = FocusNode();
@@ -23,4 +21,5 @@ class AddressController extends GetxController {
   void setSelectedState(String value) {
     stateController.text = value;
   }
+  
 }

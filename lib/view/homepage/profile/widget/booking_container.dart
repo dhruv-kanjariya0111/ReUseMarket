@@ -11,13 +11,13 @@ class BookingContainer extends StatelessWidget {
   final List<QueryDocumentSnapshot> documents;
   final Booking bookings;
   final int index;
-  const BookingContainer(
+  BookingContainer(
       {super.key,
       required this.documents,
       required this.index,
       required this.bookings});
-  static final myGadget = MyBookingController();
-  static final updateGadget = UpdateController();
+  final myGadget = MyBookingController();
+  final updateGadget = UpdateController();
   @override
   Widget build(BuildContext context) {
     return Column(

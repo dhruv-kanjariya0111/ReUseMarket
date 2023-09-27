@@ -1,3 +1,4 @@
+import 'package:ReUseMarket/view/homepage/additem/additem_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +14,13 @@ class AddAddressWidget extends StatelessWidget {
   final bool? isEditAddress;
   final Map<String, dynamic>? addressMap;
   final int? index;
-  const AddAddressWidget(
+  AddAddressWidget(
       {super.key, this.isEditAddress = false, this.addressMap, this.index});
-  static final AddressController addressModel = AddressController();
+  final AddressController addressModel = AddressController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: AppBarWidget(title: "Add address"),
       ),
@@ -143,7 +144,7 @@ class AddAddressWidget extends StatelessWidget {
                   ),
                   kwidth20,
                   Container(
-                    width: 120,
+                    width: 155,
                     margin: const EdgeInsets.symmetric(horizontal: 10),
                     padding: const EdgeInsets.only(left: 10),
                     alignment: Alignment.center,
@@ -201,7 +202,6 @@ class AddAddressWidget extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-             
             ]),
           ),
         ),
@@ -241,7 +241,7 @@ class AddAddressWidget extends StatelessWidget {
             List.from(documentSnapshot.get('addresses') ?? []);
         addresses.add(newAddress);
         await docRef.update({'addresses': addresses}).then(
-            (value) => Get.offAll(const MainScreen()));
+            (value) => Get.offAll(AddItemScreen()));
       }
     } else {}
 

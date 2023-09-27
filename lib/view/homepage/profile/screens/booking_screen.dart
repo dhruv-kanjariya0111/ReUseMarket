@@ -12,8 +12,8 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:ReUseMarket/view/homepage/profile/widget/booking_container.dart';
 
 class MyBookingScreen extends StatelessWidget {
-  const MyBookingScreen({super.key});
-  static MyBookingController myGadget = MyBookingController();
+  MyBookingScreen({super.key});
+  final MyBookingController myGadget = MyBookingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,10 +64,15 @@ class MyBookingScreen extends StatelessWidget {
                   return const Center(
                     child: Text(
                       wrongText,
-                      style: TextStyle(
-                          color: kblackColor,
+                    
+                      
+                      strutStyle: StrutStyle(
+
                           fontWeight: FontWeight.bold,
-                          fontSize: 25.0),
+                      ),
+                      // style: TextStyle(
+                          // color: kblackColor,
+                      //     fontSize: 25.0),
                     ),
                   );
                 } else {

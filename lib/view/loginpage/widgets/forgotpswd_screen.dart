@@ -11,12 +11,12 @@ import 'package:ReUseMarket/controller/signin/forgot_function.dart';
 GlobalKey formKey2 = GlobalKey<FormState>();
 
 class ForgotPasswordScreen extends StatelessWidget {
-  const ForgotPasswordScreen({super.key});
-  static LoginController loginController = Get.put(LoginController());
+  ForgotPasswordScreen({super.key});
+  final LoginController loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: AppBarWidget(title: forgotpassText),
       ),
@@ -44,7 +44,6 @@ class ForgotPasswordScreen extends StatelessWidget {
                     child: TextFieldWidget(
                       hintText: '',
                       label: mailText,
-                      
                       controller: loginController.emailController.value,
                       isEmail: true,
                       keyboardType: TextInputType.emailAddress,

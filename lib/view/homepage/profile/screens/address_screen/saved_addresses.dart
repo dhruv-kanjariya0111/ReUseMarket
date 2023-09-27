@@ -1,3 +1,4 @@
+import 'package:ReUseMarket/controller/update/update_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,26 @@ import 'package:ReUseMarket/view/homepage/profile/screens/address_screen/add_add
 import 'package:ReUseMarket/view/homepage/profile/screens/address_screen/edit_address.dart';
 
 class SavedAddresses extends StatelessWidget {
-  const SavedAddresses({super.key});
+  SavedAddresses({super.key});
+  final UpdateController updateController = Get.put(UpdateController());
+  displayDeleteDialog(Map<String, dynamic>? documents, int index) {
+    Get.defaultDialog(
+        title: 'Delete Address',
+        titleStyle: TextStyle(fontSize: 20),
+        middleText: 'Are you sure to delete address',
+        textConfirm: 'confirm',
+        textCancel: 'cancel',
+        confirmTextColor: Colors.white,
+        onCancel: () {},
+        onConfirm: () async {
+          await updateController.deleteAddress(doc: documents, index: index);
+          Get.back();
+          Get.snackbar("Your Address deleted", "",
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.yellow.shade100,
+              colorText: kblackColor);
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -159,7 +179,10 @@ class SavedAddresses extends StatelessWidget {
                                         height: 100,
                                       ),
                                       IconButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            displayDeleteDialog(
+                                                documents, index);
+                                          },
                                           icon: const Icon(
                                             Icons.delete,
                                             color: kredColor,
@@ -191,7 +214,7 @@ class SavedAddresses extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20)),
               child: TextButton.icon(
                   onPressed: () {
-                    Get.to(() => const AddAddressWidget());
+                    Get.to(() => AddAddressWidget());
                   },
                   icon: const Icon(
                     Icons.home,

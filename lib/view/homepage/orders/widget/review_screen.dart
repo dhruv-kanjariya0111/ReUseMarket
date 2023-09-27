@@ -8,18 +8,18 @@ class ReviewScreen extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String ownerEmail;
-  const ReviewScreen(
+  ReviewScreen(
       {super.key,
       required this.imageUrl,
       required this.title,
       required this.ownerEmail});
-  static final OrderModel orderModel = OrderModel();
-  static TextEditingController reviewController = TextEditingController();
+  final OrderModel orderModel = OrderModel();
+  final TextEditingController reviewController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(60),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
         child: AppBarWidget(
           title: "Review Gadget",
         ),
@@ -34,7 +34,7 @@ class ReviewScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-              //  ReqImageWidget(imageUrl: imageUrl),
+                //  ReqImageWidget(imageUrl: imageUrl),
                 kwidth10,
                 Text(
                   title,

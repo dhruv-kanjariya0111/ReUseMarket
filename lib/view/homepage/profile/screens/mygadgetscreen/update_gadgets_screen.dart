@@ -18,10 +18,10 @@ import 'package:ReUseMarket/view/homepage/profile/widget/image_container.dart';
 class UpdateGadget extends StatelessWidget {
   final String? doc;
   final Gadgets gadget;
-  const UpdateGadget({super.key, required this.doc, required this.gadget});
-  static final updateGadget = UpdateController();
-  static ItemModel itemModel = Get.put(ItemModel());
-  static UpdateController updatePutGadget = Get.put(UpdateController());
+  UpdateGadget({super.key, required this.doc, required this.gadget});
+  final updateGadget = UpdateController();
+  final ItemModel itemModel = Get.put(ItemModel());
+  final UpdateController updatePutGadget = Get.put(UpdateController());
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -33,7 +33,7 @@ class UpdateGadget extends StatelessWidget {
     });
     updateGadget.firstImage.value = '';
     return Scaffold(
-        appBar: const PreferredSize(
+        appBar:  PreferredSize(
           preferredSize: Size.fromHeight(60),
           child: AppBarWidget(title: appName),
         ),
@@ -148,8 +148,8 @@ class UpdateGadget extends StatelessWidget {
 
 class UploadImageRow extends StatelessWidget {
   final Gadgets gadget;
-  const UploadImageRow({super.key, required this.gadget});
-  static UpdateController updateGadget = UpdateController();
+  UploadImageRow({super.key, required this.gadget});
+  final UpdateController updateGadget = UpdateController();
   // static final updatePutGadget = Get.put(() => UpdateController());
   @override
   Widget build(BuildContext context) {

@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:ReUseMarket/model/itemmodel/item_model.dart';
 
 class ImageSelectWidget extends StatelessWidget {
-  const ImageSelectWidget({super.key});
-  static ItemModel itemModel = Get.put(ItemModel());
+  ImageSelectWidget({super.key});
+  final ItemModel itemModel = Get.put(ItemModel());
   @override
   Widget build(BuildContext context) {
     return GetX<ItemModel>(builder: (_) {

@@ -15,9 +15,9 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:ReUseMarket/view/homepage/profile/screens/address_screen/saved_addresses.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+   ProfileScreen({super.key});
 
-  static ProfileControl profile = ProfileControl();
+  final ProfileControl profile = ProfileControl();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,7 +132,7 @@ class ProfileScreen extends StatelessWidget {
                             title: AppLocalizations.of(context)!.editProfile,
                             icon: Icons.location_on,
                             onTap: () {
-                              Get.to(() => const EditProfile());
+                              Get.to(() =>  EditProfile());
                             },
                           ),
                         ),
@@ -154,7 +154,7 @@ class ProfileScreen extends StatelessWidget {
                             title: AppLocalizations.of(context)!.savedAddresses,
                             icon: Icons.location_on,
                             onTap: () {
-                              Get.to(() => const SavedAddresses());
+                              Get.to(() => SavedAddresses());
                             },
                           ),
                         ),

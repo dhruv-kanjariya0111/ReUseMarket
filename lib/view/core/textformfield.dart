@@ -37,7 +37,7 @@ class TextFieldWidget extends StatelessWidget {
     this.prefixIcon,
     this.validator, required String label,
   });
-  static final SignUpModel signupmodel = Get.put(SignUpModel());
+   final SignUpModel signupmodel = Get.put(SignUpModel());
   final LoginController loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {

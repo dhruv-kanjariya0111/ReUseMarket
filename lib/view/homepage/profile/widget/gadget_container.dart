@@ -14,13 +14,13 @@ class GadgetContainer extends StatelessWidget {
   final List<QueryDocumentSnapshot> documents;
   final Gadgets gadget;
   final int index;
-  const GadgetContainer(
+  GadgetContainer(
       {super.key,
       required this.documents,
       required this.index,
       required this.gadget});
-  static final myGadget = MyGadgetsController();
-  static final updateGadget = UpdateController();
+  final myGadget = MyGadgetsController();
+  final updateGadget = UpdateController();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -60,9 +60,8 @@ class GadgetContainer extends StatelessWidget {
                       ),
                     ),
                     kheight10,
-                    const Text(
-                      "Rs.${10}/day",
-                      // "Rs.${gadget.dayPrice}/day",
+                    Text(
+                      "Rs.${gadget.weekPrice}",
                       style: TextStyle(
                           fontSize: 15.0, fontWeight: FontWeight.w400),
                     ),

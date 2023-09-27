@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ReUseMarket/view/core/string_consts.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:ReUseMarket/view/localization/l10n.dart';
 import 'package:flutter_localizations/src/material_localizations.dart';
 import 'package:flutter_localizations/src/cupertino_localizations.dart';
 import 'package:flutter_localizations/src/widgets_localizations.dart';
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
         title: appName,
         theme: ThemeData(primarySwatch: Colors.blueGrey),
         home: WelcomeScreen(),
-        supportedLocales: L10n.all,
+        // supportedLocales: L10n.all,
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,

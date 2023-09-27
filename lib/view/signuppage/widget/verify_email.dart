@@ -49,7 +49,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     return isEmailVerified
         ? const MainScreen()
         : Scaffold(
-            appBar: const PreferredSize(
+            appBar:  PreferredSize(
                 preferredSize: Size.fromHeight(60),
                 child: AppBarWidget(title: appName)),
             body: Center(

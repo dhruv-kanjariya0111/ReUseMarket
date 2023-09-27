@@ -3,7 +3,7 @@ import 'package:ReUseMarket/view/core/string_consts.dart';
 
 class DetailsFieldWidget extends StatelessWidget {
   final TextEditingController controller;
-  const DetailsFieldWidget({
+   DetailsFieldWidget({
     super.key,
     required this.controller,
   });

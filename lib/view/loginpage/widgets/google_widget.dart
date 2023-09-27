@@ -11,7 +11,7 @@ class SignInContainer extends StatelessWidget {
       height: 40.0,
       width: 200.0,
       decoration: BoxDecoration(
-          color: Color(0xFF07A3B2),
+          color: const Color(0xFF07A3B2),
           boxShadow: [
             BoxShadow(
               color: kblackColor.withOpacity(0.5),
@@ -21,7 +21,7 @@ class SignInContainer extends StatelessWidget {
             ),
           ],
           borderRadius: BorderRadius.circular(20.0)),
-      child: Icon(
+      child: const Icon(
         FontAwesomeIcons.google,
         color: Color(0xFFD9ECC7),
       ),

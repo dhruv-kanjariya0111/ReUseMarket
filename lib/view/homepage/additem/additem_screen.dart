@@ -13,16 +13,22 @@ import 'package:ReUseMarket/view/homepage/additem/widgets/dropdownlist_widget.da
 import 'package:ReUseMarket/view/homepage/additem/widgets/image_select_widget.dart';
 
 class AddItemScreen extends StatelessWidget {
-  const AddItemScreen({super.key});
-  static ItemModel itemModel = Get.put(ItemModel());
+  AddItemScreen({super.key});
+  final ItemModel itemModel = Get.put(ItemModel());
+  final FocusNode node = FocusNode();
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: GestureDetector(
-        onTap: () {
-          // Hide the keyboard when tapping anywhere on the screen
-          FocusScope.of(context).unfocus();
-        },
+    return GestureDetector(
+      onTap: () {
+        itemModel.itemTitleFocusNode.unfocus();
+        itemModel.itemDetailFocusNode.unfocus();
+        final FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: SingleChildScrollView(
         child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             width: MediaQuery.of(context).size.width,
@@ -47,6 +53,7 @@ class AddItemScreen extends StatelessWidget {
                       child: Container(
                         child: TextFormField(
                           controller: itemModel.itemTitleController,
+                          focusNode: itemModel.itemTitleFocusNode,
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.add_circle_outline_outlined),
                             labelText: titleText,
@@ -85,6 +92,7 @@ class AddItemScreen extends StatelessWidget {
                     AmountContainer(
                       hinText: weekText,
                       controller: itemModel.weekController,
+                      focusNode: itemModel.itemDetailFocusNode,
                       // width: 200.0,
                     ),
                     kheight20,
@@ -133,7 +141,7 @@ class AddItemScreen extends StatelessWidget {
                       color: kgrey,
                     ),
                     kheight10,
-                    const ImageSelectWidget(),
+                    ImageSelectWidget(),
                     kheight20,
                     Align(
                       alignment: Alignment.center,

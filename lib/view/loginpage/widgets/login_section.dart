@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:ReUseMarket/model/loginmodel/mobx/login_mobx.dart';
 import 'package:ReUseMarket/view/core/button_widget.dart';
-import 'package:ReUseMarket/view/core/const_colors.dart';
 import 'package:ReUseMarket/view/core/string_consts.dart';
 import 'package:ReUseMarket/view/core/widgets.dart';
 import 'package:ReUseMarket/controller/signin/login_functions.dart';
@@ -16,95 +15,86 @@ import 'package:ReUseMarket/view/loginpage/widgets/google_widget.dart';
 import 'package:ReUseMarket/view/signuppage/signup_screen.dart';
 
 class LoginSection extends StatelessWidget {
-  const LoginSection({super.key});
-  static final loginFormKey = GlobalKey<FormState>();
-  static LoginController loginController = Get.put(LoginController());
+  LoginSection({super.key});
+  final loginFormKey = GlobalKey<FormState>();
+  final LoginController loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
-      child: Container(
-        margin: EdgeInsets.only(top: 20),
-        decoration: BoxDecoration(
-          color: Colors.grey.shade100.withOpacity(0.8),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(0.0),
-            topRight: Radius.circular(100.0),
-          ),
+    return Container(
+      // margin: const EdgeInsets.only(top: ),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 100),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.75),
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(0.0),
+          topRight: Radius.circular(100.0),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Form(
-            key: loginFormKey,
-            child: Column(
+      ),
+      child: Form(
+        key: loginFormKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            EmailField(
+              emailController: loginController.emailController.value,
+            ),
+            const SizedBox(height: 20),
+            PasswordField(
+              passwordController: loginController.passwordController.value,
+            ),
+            kheight20,
+            InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ForgotPasswordScreen(),
+                  ));
+                },
+                child: const Text(
+                  forgotpassText,
+                  style: TextStyle(
+                      fontSize: 15.0,
+                      color: Color(0xFF07A3B2),
+                      decoration: TextDecoration.underline),
+                )),
+            kheight20,
+            ButtonWidget(
+              text: logintext,
+              onpressed: (context) {
+                final isValid = loginFormKey.currentState!.validate();
+                if (!isValid) return;
+                signIn(
+                    context: context,
+                    email: loginController.emailController.value,
+                    password: loginController.passwordController.value);
+              },
+            ),
+            kheight10,
+            kDivider(
+              context,
+            ),
+            kheight10,
+            const Text('OR'),
+            const Text(signinWithText),
+            kheight10,
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 100),
-                EmailField(
-                  emailController: loginController.emailController.value,
-                ),
-                SizedBox(height: 20),
-                PasswordField(
-                  passwordController: loginController.passwordController.value,
-                ),
-                kheight20,
                 InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const ForgotPasswordScreen(),
-                      ));
+                    onTap: () async {
+                      await siginInWithGoogle(context: context);
                     },
-                    child: const Text(
-                      forgotpassText,
-                      style: TextStyle(
-                          fontSize: 15.0,
-                          color: Color(0xFF07A3B2),
-                          decoration: TextDecoration.underline),
-                    )),
-                kheight20,
-                ButtonWidget(
-                  text: logintext,
-                  onpressed: (context) {
-                    final isValid = loginFormKey.currentState!.validate();
-                    if (!isValid) return;
-                    signIn(
-                        context: context,
-                        email: loginController.emailController.value,
-                        password: loginController.passwordController.value);
-                  },
-                ),
-                kheight10,
-                kDivider(
-                  context,
-                ),
-                kheight10,
-                const Text('OR'),
-                const Text(signinWithText),
-                kheight10,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                        onTap: () async {
-                          await siginInWithGoogle(context: context);
-                          Get.off(MainScreen());
-                        },
-                        child: const SignInContainer())
-                  ],
-                ),
-                kheight20,
-                const Text(noAccountText),
-                TextButton(
-                  onPressed: () {
-                    Get.to(const SignUpScreen());
-                  },
-                  child: const Text('Sign Up Here'),
-                ),
+                    child: const SignInContainer())
               ],
             ),
-          ),
+            kheight20,
+            const Text(noAccountText),
+            TextButton(
+              onPressed: () {
+                Get.to(SignUpScreen());
+              },
+              child: const Text('Sign Up Here'),
+            ),
+          ],
         ),
       ),
     );

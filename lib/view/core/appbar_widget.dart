@@ -7,13 +7,13 @@ class AppBarWidget extends StatelessWidget {
   final int indexValue;
   final List<Widget>? actions;
   final bool? isHome;
-  const AppBarWidget(
+   AppBarWidget(
       {super.key,
       required this.title,
       this.indexValue = 1,
       this.actions,
       this.isHome = false});
-  static final HomeGetx controller = Get.put(HomeGetx());
+  final HomeGetx controller = Get.put(HomeGetx());
   @override
   Widget build(BuildContext context) {
     return AppBar(

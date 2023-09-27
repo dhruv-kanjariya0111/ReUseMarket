@@ -17,6 +17,10 @@ class ItemModel extends GetxController {
   // TextEditingController dayController = TextEditingController();
   TextEditingController weekController = TextEditingController();
   // TextEditingController monthController = TextEditingController();
+
+  FocusNode itemTitleFocusNode = FocusNode();
+  FocusNode itemDetailFocusNode = FocusNode();
+
   final itemformKey = GlobalKey<FormState>();
   var dropdownValue = 'Electronics'.obs;
 

@@ -11,13 +11,13 @@ class MessageScreen extends StatelessWidget {
   final String recieverEmail;
   final String? recieverName;
   final String? senderName;
-  const MessageScreen(
+   MessageScreen(
       {super.key,
       required this.recieverEmail,
       this.recieverName,
       this.senderName});
-  static final ChatModel chatModel = ChatModel();
-  static FocusNode focusNode = FocusNode();
+   final ChatModel chatModel = ChatModel();
+   final FocusNode focusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

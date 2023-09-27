@@ -5,7 +5,7 @@ import 'package:ReUseMarket/view/core/const_colors.dart';
 class ImageCard extends StatelessWidget {
   final String imageUrl;
 
-  const ImageCard({super.key, required this.imageUrl});
+  const ImageCard({Key? key, required this.imageUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +13,6 @@ class ImageCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30.0),
         color: kblackColor,
-        // boxShadow: const [
-        //   BoxShadow(color: Colors.grey, blurRadius: 5.0, spreadRadius: 5.0)
-        // ],
       ),
       child: Image.network(
         imageUrl,
@@ -27,12 +24,16 @@ class ImageCard extends StatelessWidget {
             return child;
           } else {
             return Center(
-              child: BlurHash(
-                imageFit: BoxFit.cover,
-                duration: const Duration(seconds: 4),
-                curve: Curves.bounceInOut,
-                hash: 'LHA-Vc_4s9ad4oMwt8t7RhXTNGRj',
-                image: imageUrl,
+              child: SizedBox(
+                width: 300.0,
+                height: 250.0,
+                child: BlurHash(
+                  imageFit: BoxFit.cover,
+                  duration: const Duration(seconds: 4),
+                  curve: Curves.bounceInOut,
+                  hash: 'LHA-Vc_4s9ad4oMwt8t7RhXTNGRj',
+                  image: imageUrl,
+                ),
               ),
             );
           }

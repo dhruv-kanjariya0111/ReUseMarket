@@ -1,3 +1,4 @@
+import 'package:ReUseMarket/view/homepage/profile/account_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,15 +8,13 @@ import 'package:ReUseMarket/view/core/animation.dart';
 import 'package:ReUseMarket/view/core/appbar_widget.dart';
 import 'package:ReUseMarket/view/homepage/additem/additem_screen.dart';
 import 'package:ReUseMarket/view/homepage/home/home_screen.dart';
-import 'package:ReUseMarket/view/homepage/orders/order_screen.dart';
-import 'package:ReUseMarket/view/homepage/profile/profile_screen.dart';
 import 'package:ReUseMarket/view/homepage/widget/bottomnavigationbar_widget.dart';
 import 'package:ReUseMarket/view/homepage/drawer/drawer_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
-final HomeGetx controller = Get.put(HomeGetx());
+// final HomeGetx controller = Get.put(HomeGetx());
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends GetView<HomeGetx> {
   const MainScreen({super.key});
 
   @override
@@ -48,17 +47,16 @@ class MainScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: const BottomNavigationBarWidget(),
+        bottomNavigationBar: BottomNavigationBarWidget(),
         drawer: DrawerWidget(email: user.email!),
         body: Obx(() {
-          return IndexedStack(
-              index: controller.selectedIndex.value,
-              children: const [
-                HomeScreen(),
-                AddItemScreen(),
-                OrderSCreen(),
-                ProfileScreen(),
-              ]);
+          return IndexedStack(index: controller.selectedIndex.value, children: [
+            HomeScreen(),
+            AddItemScreen(),
+            AccountScreen(),
+            // ProfileScreen(),
+            // OrderSCreen(),
+          ]);
         }));
   }
 }

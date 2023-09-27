@@ -14,12 +14,12 @@ import 'package:ReUseMarket/view/homepage/home/itemscreen/widget/image_card.dart
 class ItemScreen extends StatelessWidget {
   final String doc;
   final Gadgets gadget;
-  const ItemScreen({
+  ItemScreen({
     super.key,
     required this.doc,
     required this.gadget,
   });
-  static final updateGadget = UpdateController();
+  final updateGadget = Get.put(UpdateController());
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +35,8 @@ class ItemScreen extends StatelessWidget {
       isOwner = true;
     }
     print('${updateGadget.data['name']}');
-    updateGadget.assignData();
     return Scaffold(
-      appBar: const PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: AppBarWidget(title: appName),
       ),
@@ -169,28 +168,34 @@ class ItemScreen extends StatelessWidget {
                     ),
                   ),
                   kheight20,
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => MessageScreen(
-                            recieverEmail: gadget.email,
-                            recieverName: gadget.name,
-                            senderName: updateGadget.data['name'],
-                          ),
-                        ));
-                      },
-                      style: ElevatedButton.styleFrom(
-                          // fixedSize: const Size(300, 40),
-                          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-                          side: const BorderSide(width: 2, color: kwhiteColor),
-                          shape: const StadiumBorder()),
-                      child: const Text(
-                        "Click Here to Message",
-                        maxLines: 1,
-                      ),
-                    ),
-                  ),
+                  GetBuilder<UpdateController>(builder: (_) {
+                    return gadget.name != updateGadget.data['name']
+                        ? Center(
+                            child: ElevatedButton(
+                              onPressed: () async {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => MessageScreen(
+                                    recieverEmail: gadget.email,
+                                    recieverName: gadget.name,
+                                    senderName: updateGadget.data['name'],
+                                  ),
+                                ));
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  // fixedSize: const Size(300, 40),
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 0, 0, 0),
+                                  side: const BorderSide(
+                                      width: 2, color: kwhiteColor),
+                                  shape: const StadiumBorder()),
+                              child: const Text(
+                                "Click Here to Message",
+                                maxLines: 1,
+                              ),
+                            ),
+                          )
+                        : Container();
+                  })
                 ],
               ),
               kheight10,

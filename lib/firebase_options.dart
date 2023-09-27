@@ -15,7 +15,7 @@ import 'package:flutter/foundation.dart'
 /// );
 /// ```
 class DefaultFirebaseOptions {
-  static FirebaseOptions get currentPlatform {
+   FirebaseOptions get currentPlatform {
     if (kIsWeb) {
       throw UnsupportedError(
         'DefaultFirebaseOptions have not been configured for web - '
@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
+  final FirebaseOptions android = const FirebaseOptions(
     apiKey: 'AIzaSyDKIWB6Kxy7NH0_tYdxb0AGk-yZIsvs0yk',
     appId: '1:202085419687:android:2f352de4f27e65230da982',
     messagingSenderId: '202085419687',

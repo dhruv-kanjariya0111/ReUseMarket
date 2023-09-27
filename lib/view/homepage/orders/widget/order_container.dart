@@ -13,8 +13,8 @@ import 'package:ReUseMarket/view/homepage/orders/widget/review_screen.dart';
 
 class OrderContainer extends StatelessWidget {
   final MyOrderModel myorder;
-  const OrderContainer({super.key, required this.myorder});
-  static final OrderModel orderModel = OrderModel();
+  OrderContainer({super.key, required this.myorder});
+  final OrderModel orderModel = OrderModel();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -40,7 +40,7 @@ class OrderContainer extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                   // ReqImageWidget(imageUrl: myorder.image1),
+                    // ReqImageWidget(imageUrl: myorder.image1),
                     kwidth20,
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

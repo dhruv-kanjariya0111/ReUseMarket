@@ -1,3 +1,4 @@
+import 'package:ReUseMarket/view/loginpage/login_screen.dart';
 import 'package:ReUseMarket/view/splashscreen/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,7 @@ class LogoutButton extends StatelessWidget {
                       onPressed: () async {
                         await signOutFunc(context: context);
                         Get.offAll(
-                          WelcomeScreen(),
+                          const LoginPage(),
                         );
                       },
                       child: Text(AppLocalizations.of(context)!.logout))

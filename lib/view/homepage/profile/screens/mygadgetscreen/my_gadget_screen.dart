@@ -8,14 +8,15 @@ import 'package:ReUseMarket/view/core/const_colors.dart';
 import 'package:ReUseMarket/view/core/screen_container_widget.dart';
 import 'package:ReUseMarket/view/core/string_consts.dart';
 import 'package:ReUseMarket/view/homepage/profile/widget/gadget_container.dart';
+import 'package:shimmer/shimmer.dart';
 
 class MyGadgetsScreen extends StatelessWidget {
-  const MyGadgetsScreen({super.key});
-  static MyGadgetsController myGadget = MyGadgetsController();
+  MyGadgetsScreen({super.key});
+  final MyGadgetsController myGadget = MyGadgetsController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const PreferredSize(
+        appBar: PreferredSize(
           preferredSize: Size.fromHeight(60),
           child: AppBarWidget(title: myGadgetsText),
         ),
@@ -62,7 +63,14 @@ class MyGadgetsScreen extends StatelessWidget {
                     ),
                   );
                 } else {
-                  return const CircularProgressIndicator();
+                  return Shimmer.fromColors(
+                    baseColor: Colors.grey.shade400, // Customize base color
+                    highlightColor:
+                        Colors.grey.shade200, // Customize highlight color
+                    child: Container(
+                      color: Colors.white, // Background color
+                    ),
+                  );
                 }
               }),
         ));

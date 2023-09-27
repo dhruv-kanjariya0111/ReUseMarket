@@ -9,13 +9,13 @@ import 'package:ReUseMarket/view/core/string_consts.dart';
 import 'package:ReUseMarket/view/core/widgets.dart';
 
 class EditProfile extends StatelessWidget {
-  const EditProfile({super.key});
-  static ProfileControl profile = Get.find<ProfileControl>();
-  static ProfileControl profileControl = ProfileControl();
+  EditProfile({super.key});
+  final ProfileControl profile = Get.put(ProfileControl());
+  final ProfileControl profileControl = ProfileControl();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: AppBarWidget(title: editProfText),
       ),

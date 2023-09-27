@@ -8,12 +8,12 @@ class PasswordField extends StatelessWidget {
   final TextEditingController passwordController;
   final TextEditingController? confirmPassword;
   final bool? isConfirm;
-  const PasswordField(
+   PasswordField(
       {super.key,
       required this.passwordController,
       this.isConfirm = false,
       this.confirmPassword});
-  static LoginController loginController = Get.put(LoginController());
+  final LoginController loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     return GetX<LoginController>(builder: (context) {

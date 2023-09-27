@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,21 +20,14 @@ class EditAddressScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    // if (isEditAddress == true) {
     addressModel.houseNameController.text = addressMap!['houseNo'] ?? '';
     addressModel.areaController.text = addressMap!['area'] ?? '';
     addressModel.cityController.text = addressMap!['city'] ?? '';
     addressModel.pincodeController.text = addressMap!['pincode'] ?? '';
     addressModel.stateController.text = addressMap!['state'] ?? '';
-    // } else {
-    //   clearAddress();
-    // }
-    //  });
-    log("rebuilding");
 
     return Scaffold(
-      appBar: const PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: AppBarWidget(title: "Add address"),
       ),

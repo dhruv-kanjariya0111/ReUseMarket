@@ -152,8 +152,19 @@ class UpdateController extends GetxController {
     return data;
   }
 
+  deleteAddress({required Map<String, dynamic>? doc, required int index})async {
+    (doc!['addresses'] as List).removeAt(index);
+    // doc
+   await FirebaseFirestore.instance
+        .collection('Users')
+        .doc(doc['email'])
+        .update(doc)
+        ;
+  }
+
   assignData() async {
     data = await getDocument();
+    update();
   }
 
   @override
